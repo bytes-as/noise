@@ -1,4 +1,6 @@
-
+import numpy
+from mpl_toolkits import mplot3d
+import matplotlib.pyplot as plt
 def perlin_noise(x, y, z):
     X = int(x) & 255                  # FIND UNIT CUBE THAT
     Y = int(y) & 255                  # CONTAINS POINT.
@@ -50,5 +52,18 @@ permutation = [151,160,137,91,90,15,
 for i in range(256):
     p[256+i] = p[i] = permutation[i]
  
+data_x = numpy.full(1000000, float(5))
+data_y = numpy.linspace(0, 100, 1000000)
+data_z = numpy.full(1000000, float(5))
+for i in range(1000000):
+    # print(str(i) + "... ==> " + str(data_x[i]) + " : " + str(data_y[i]) + " : " + str(data_z[i]) )
+    # print(str(i) + "... ==> " + str(data_x[i]) + " : " + str(data_y[i]) + " : " + str(data_z[i]) )
+    data_z[i] += perlin_noise(data_x[i], data_y[i], data_z[i])
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+ax.plot3D(data_x, data_y, data_z, 'gray')
+plt.show()
+
+
 if __name__ == '__main__':
     print("%1.17f" % perlin_noise(3.14, 42, 7))
