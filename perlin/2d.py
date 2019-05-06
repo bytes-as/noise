@@ -11,7 +11,7 @@ def lerp(t, a, b):
 
 def grad2D(hash, x, y):
     h = hash & 15
-    u = x if h < 4 or h in (12, 15) else -x
+    u = x if h < 4 or h in (12, 16) else -x
     v = y if h < 8 else -y
     return u+v
 
@@ -37,16 +37,21 @@ def perlin2D(x,y):
     x, y = x%255, y%255
     low_x, low_y = math.floor(x), math.floor(y)
     dist_x, dist_y = x-low_x, y-low_y
-    A = int(p[int(x)  ] + y)
-    B = int(p[int(x+1)] + y)
-    return lerp(dist_y, lerp(dist_x, fade(grad2D(p[A]  , x  , y  )), fade(grad2D(p[B]  , x+1, y  ))),
-                        lerp(dist_x, fade(grad2D(p[A+1], x+1, y+1)), fade(grad2D(p[B+1], x  , y+1))) )
+    # A = int(p[int(x)  ] + y)
+    # B = int(p[int(x+1)] + y)
+    # return lerp(fade(dist_y), lerp(fade(dist_x), grad2D(p[A]  , x  , y  ), grad2D(p[B]  , x+1, y  )),
+    #                     lerp(fade(dist_x), grad2D(p[A+1], x+1, y+1), grad2D(p[B+1], x  , y+1)) )
 
-x = numpy.linspace(0, 255, 500)
-y = numpy.linspace(0 ,255 ,500)
-Z = numpy.full((500,500), 0.00)
-for i in range(500):
-    for j in range(500):
+    A = int(p[int(x)] + y)
+    return lerp(fade(dist_y), lerp(fade(dist_x), grad2D(p[A]  , x  , y  ), grad2D(p[A+1]  , x+1, y  )),
+                        lerp(fade(dist_x), grad2D(p[A], x+1, y+1), grad2D(p[A+1], x  , y+1)) )
+
+
+x = numpy.linspace(0, 10, 100)
+y = numpy.linspace(0 ,10 ,100)
+Z = numpy.full((100,100), 0.00)
+for i in range(100):
+    for j in range(100):
         Z[i,j] = perlin2D(x[i], y[j])
 X, Y = numpy.meshgrid(x, y)
 
@@ -65,3 +70,11 @@ another_ax.set_ylabel('y')
 another_ax.set_zlabel('z')
 
 plt.show()
+
+
+# x = numpy.linspace(0, 10, 100)
+# y = numpy.linspace(0 , 0, 100)
+# for i in range(len(x)):
+#     y[i] += perlin2D(x[i], y[i])
+# plt.plot(x, y)
+# plt.show()
