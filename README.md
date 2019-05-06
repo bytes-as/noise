@@ -1,2 +1,3 @@
 # noise
-bla bla bla not gonna spoil it now
+![wireframe](./perlin/2D_wireframe.png)
+![Surface](./perlin/2D_surface.png)
