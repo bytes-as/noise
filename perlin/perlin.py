@@ -41,7 +41,7 @@ def grad2D(hash, X):
     return (u if (h&1) == 0 else -u)
 
 class Point:
-    def __init__(self, x, y, z=None, repeat=99999):
+    def __init__(self, x, y, z=None, repeat=255):
         self.x = x%repeat
         self.y = y%repeat
         if z is not None:
@@ -156,10 +156,10 @@ def perlin2D(point):
 # X = Point(0.03, 5)
 # print(perlin2D(X))
 
-data_x = numpy.full(1000000, float(5))
-data_y = numpy.linspace(0, 100, 1000000)
-data_z = numpy.full(1000000, float(5))
-for i in range(1000000):
+data_x = numpy.full(1000, float(5))
+data_y = numpy.linspace(0, 10, 1000)
+data_z = numpy.full(1000, float(5))
+for i in range(1000):
     # print(str(i) + "... ==> " + str(data_x[i]) + " : " + str(data_y[i]) + " : " + str(data_z[i]) )
     # print(str(i) + "... ==> " + str(data_x[i]) + " : " + str(data_y[i]) + " : " + str(data_z[i]) )
     data_z[i] += perlin3D(Point(data_x[i], data_y[i], data_z[i]))
