@@ -21,11 +21,13 @@ def perlin1D(point):
     high_slope = slope[high]
     distance = point - low
     low_position = low_slope * distance
-    high_distance = -high_slope * (1 - distance)
+    high_distance = high_slope * (distance - 1)
     return lerp(fade(distance), low_position, high_distance)
 
-x = numpy.linspace(0, 100, 100000)
-y = numpy.full(100000, 0.000)
+x = numpy.linspace(0, 10, 1000)
+y = numpy.linspace(0, 10, 1000)
+matplotlib.pyplot.plot(x, y, 'r')
+# y = numpy.full(1000, 0.000)
 for i in range(len(x)):
     y[i] += perlin1D(x[i])
     # print(str(i), " --> ", y[i])
