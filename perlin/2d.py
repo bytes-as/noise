@@ -49,7 +49,7 @@ for i in range(len(x)):
     for j in range(len(y)):
         Z[i,j] = perlin2D(x[i], y[j])
 X, Y = numpy.meshgrid(x, y)
-
+c
 fig = plt.figure()
 ax = plt.axes(projection='3d')
 ax.contour3D(X, Y, Z, 50, cmap='binary')
