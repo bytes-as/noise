@@ -44,8 +44,8 @@ def perlin2D(x,y):
     return lerp(fade(dist_y), lerp(fade(dist_x), grad2D(p[AA], dist_x, dist_y  ), grad2D(p[AB], dist_x-1, dist_y  )),
                               lerp(fade(dist_x), grad2D(p[BA], dist_x, dist_y-1), grad2D(p[BB], dist_x-1, dist_y-1)) )
 
-x = numpy.linspace(0, 5, 100)
-y = numpy.linspace(0, 5, 100)
+x = numpy.linspace(0, 2, 100)
+y = numpy.linspace(0, 2, 100)
 Z = numpy.full((len(x),len(y)), 0.00)
 for i in range(len(x)):
     for j in range(len(y)):
