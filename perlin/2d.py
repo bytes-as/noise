@@ -34,22 +34,24 @@ for i in range(256):
     p[256+i] = p[i] = permutation[i]
 
 def perlin2D(x,y):
-    x, y = x%255, y%255
+    x, y = x%255        , y%255
     low_x, low_y = math.floor(x), math.floor(y)
     dist_x, dist_y = x-low_x, y-low_y
-    r = int(p[int(x)  ] + y)
-    return lerp(fade(dist_y), lerp(fade(dist_x), grad2D(p[r], dist_x, dist_y  ), grad2D(p[r+1], dist_x-1, dist_y  )),
-                              lerp(fade(dist_x), grad2D(p[r], dist_x, dist_y-1), grad2D(p[r+1], dist_x-1, dist_y-1)) )
-
+    AA = p[int(low_x)] + int(low_y)
+    BB = p[int(low_x) + 1] + int(low_y + 1)
+    AB = p[int(low_x)+1] + int(low_y)
+    BA = p[int(low_x)] + int(low_y + 1)
+    return lerp(fade(dist_y), lerp(fade(dist_x), grad2D(p[AA], dist_x, dist_y  ), grad2D(p[AB], dist_x-1, dist_y  )),
+                              lerp(fade(dist_x), grad2D(p[BA], dist_x, dist_y-1), grad2D(p[BB], dist_x-1, dist_y-1)) )
 
 x = numpy.linspace(0, 5, 100)
-y = numpy.linspace(0 ,5 ,100)
+y = numpy.linspace(0, 5, 100)
 Z = numpy.full((len(x),len(y)), 0.00)
 for i in range(len(x)):
     for j in range(len(y)):
         Z[i,j] = perlin2D(x[i], y[j])
 X, Y = numpy.meshgrid(x, y)
-c
+
 fig = plt.figure()
 ax = plt.axes(projection='3d')
 ax.contour3D(X, Y, Z, 50, cmap='binary')
