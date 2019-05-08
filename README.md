@@ -1,3 +1,6 @@
 # noise
-![wireframe](./perlin/2D_wireframe.png)
-![Surface](./perlin/2D_surface.png)
+![wireframe](./perlin/2d_surface_10.png)
+![surface](./perlin/2d_surface_10a.png)
+
+![wireframe](./perlin/2d_surface_2.png)
+![surface](./perlin/2d_surface_2a.png)
