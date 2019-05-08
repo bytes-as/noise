@@ -57,7 +57,7 @@ class Point:
         if self.z is None:
             self.unit_vector = numpy.array([self.x%1, self.y%1])
         else:
-            self.unit_vector = numpy.array([self.x%1, self.y%1, self.z%1]);
+            self.unit_vector = numpy.array([self.x%1, self.y%1, self.z%1])
         return self.unit_vector
 
     def get_vector(self):
@@ -70,7 +70,7 @@ class Point:
     def put_vector(self):
         if self.vector is None:
             print("Vector hasn't been assigned yet...\nFirst assign the vector using <Point Object>.get_vector()")
-            return None;
+            return None
         if self.z is None :
             print("[ %d , %d ]" % (self.vector[0], self.vector[1]))
         else :
@@ -80,7 +80,7 @@ class Point:
     def get_floor_vector(self):
         if self.z is not None:
             self.floor = numpy.array([math.floor(self.x),
-             math.floor(self.y), math.floor(self.z)]);
+             math.floor(self.y), math.floor(self.z)])
         else :
             self.floor = numpy.array([math.floor(self.x),
              math.floor(self.y)])
@@ -98,7 +98,7 @@ class Point:
 
     def get_faded_vector(self):
         if self.unit_vector is None:
-            pritn("unit vector not assigned, found None...")
+            print("unit vector not assigned, found None...")
             return None
         if self.z is None :
             self.faded = numpy.array([fade(self.unit_vector[0]), fade(self.unit_vector[1])] )
