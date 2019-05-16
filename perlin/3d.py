@@ -67,12 +67,12 @@ def octaveperlin(x, y, z, octave, persistence, amplitude):
 
 print(octaveperlin(1, 1.123, 4234.2343, 10, 5, 8))
 
-x = numpy.linspace(0, 10, 100)
+x = numpy.linspace(0, 1, 100)
 y = numpy.full(100, 0)
 z = numpy.full(100, 1)
 temp = []
 for i in range(len(x)):
-    t = octaveperlin(x[i], y[i], z[i], 10, 5, 8)
+    t = octaveperlin(x[i], y[i], z[i], 10, 2, 8)
     temp.append(t)
 plt.plot(x, numpy.array(temp))
 plt.show()
